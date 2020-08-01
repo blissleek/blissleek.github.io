@@ -103,4 +103,6 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: ''
+  type: git
+  repo:
+    github: https://github.com/blissleek/blissleek.github.io.git,gh-pages
