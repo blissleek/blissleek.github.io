@@ -9,13 +9,14 @@ categories:
 最近我在 GitHub clone 项目很慢或者会卡在某个地方以至于 clone 失败，或者clone 失败后会报如下错误：
 
 ``` bash
-......
-接收对象中:  13% (1283/9381), 4.21 MiB | 2.00 KiB/s        
-error: RPC failed; curl 18 transfer closed with outstanding read data remaining
-fatal: 远端意外挂断了
-fatal: 过早的文件结束符（EOF）
-fatal: index-pack 失败
+$ ......
+$ 接收对象中:  13% (1283/9381), 4.21 MiB | 2.00 KiB/s        
+$ error: RPC failed; curl 18 transfer closed with outstanding read data remaining
+$ fatal: 远端意外挂断了
+$ fatal: 过早的文件结束符（EOF）
+$ fatal: index-pack 失败
 ```
+
 <!-- more -->
 
 ### 解决方法一
