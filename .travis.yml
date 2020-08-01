@@ -1,0 +1,40 @@
+anguage: node_js
+node_js: stable
+cache:
+  directories:
+  - node_modules
+before_install:
+  - npm install -g hexo-cli
+  # - npm install -g gulp
+install:
+  - npm install
+before_script:
+  - npm install -g gulp
+
+script:
+  - gulp dist
+
+after_script:
+  - cd dist
+  - git init
+  - git config user.name "blissleek"
+  - git config user.email "blissleek@163.com"
+  - git add .
+  - git commit -m "TravisCI auto deploy"
+  # Github Pages
+  - git push --force --quiet "https://${GH_TOKEN}@${GITHUB_PAGE}" master:gh-pages
+
+branches:
+  only:
+    - master
+    
+env:
+  global:
+    - GITHUB_PAGE: github.com/blissleek/blissleek.github.io.git
+# 通知
+# notifications:
+#   email:
+#     recipients:
+#       - blissleek@163.com
+#     on_success: always # default: change
+#     on_failure: always # default: always
