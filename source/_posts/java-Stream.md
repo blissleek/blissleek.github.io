@@ -43,9 +43,9 @@ Exception in thread "main" java.lang.IllegalStateException: stream has already b
 
 短路操作：指遇到某些符合条件的元素就可以得到最终结果，如 A || B，只要A为true，则无需判断B的结果。
 
-> 我们也可以中间操作称为懒操作。
+> 我们也可以将中间操作称为懒操作。
 
-### 1、流的创建
+### 流的创建
 
 - 使用Collection下的 stream() 和 parallelStream() 方法
 
@@ -74,7 +74,7 @@ stream2.forEach(System.out::println);  // 1 2 3 4 5
 Stream<Double> stream3 = Stream.generate(Math::random).limit(5);
 ```
 
-### 2、流的中间操作
+### 流的中间操作
 
 | 操作       | 作用                                                         |
 | ---------- | ------------------------------------------------------------ |
