@@ -339,18 +339,6 @@ System.out.println(sum3);
 
 
 
-{% note default  %} default {% endnote %}
-
-{% note primary  %} primary {% endnote %}
-
-{% note success  %} success {% endnote %}
-
-{% note info  %} info {% endnote %}
-
-{% note warning  %} warning {% endnote %}
-
-{% note danger  %} danger {% endnote %}
-
 ### 参考资料
 
 - [Java 8 stream的详细用法](https://blog.csdn.net/y_k_y/article/details/84633001)
