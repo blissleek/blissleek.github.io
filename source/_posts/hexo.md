@@ -6,7 +6,6 @@ tags:
 - next
 categories:
 - next
-- hexo
 ---
 
 Next 美化操作
