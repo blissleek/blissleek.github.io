@@ -31,7 +31,9 @@ javaStreamApiJava8
 Exception in thread "main" java.lang.IllegalStateException: stream has already been operated upon or closed
 ```
 
-### Stream 操作分类
+
+
+## Stream 操作分类
 
 <img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glfqi55wyhj31110phmz5.jpg" style="zoom: 70%;" />
 
@@ -45,7 +47,9 @@ Exception in thread "main" java.lang.IllegalStateException: stream has already b
 
 > 我们也可以将中间操作称为懒操作。
 
-### 流的创建
+
+
+## 流的创建
 
 - 使用Collection下的 stream() 和 parallelStream() 方法
 
@@ -74,14 +78,16 @@ stream2.forEach(System.out::println);  // 1 2 3 4 5
 Stream<Double> stream3 = Stream.generate(Math::random).limit(5);
 ```
 
-### 流的中间操作
+
+
+## 流的中间操作
 
 | 操作       | 作用                                                         |
 | ---------- | ------------------------------------------------------------ |
 | filter()   | 过滤流，过滤流中的元素，返回一个符合条件的Stream             |
 | map()      | 转换流，将给定函数应用于该流的元素的结果转换为另外一种流（mapToInt、mapToLong、mapToDouble 返回int、long、double基本类型对应的 IntStream、LongStream、DoubleStream流） |
 | flatMap()  | 能够展平"包裹的流"，简单的说，就是合并一个或多个流成为一个新流（flatMapToInt、flatMapToLong、flatMapToDouble 返回对应的 IntStream、LongStream、DoubleStream流） |
-| peek()     | 查看流中元素的数据状态                                       |
+| peek()     | 如同于map，能得到流中的每一个元素。但map接收的是一个Function表达式，有返回值；而peek接收的是Consumer表达式，没有返回值。（查看流中元素的数据状态） |
 | distinct() | 返回去重的 Stream                                            |
 | sorted()   | 返回一个排序的 Stream                                        |
 | limit()    | 返回前n个元素数据组成的 Stream                               |
@@ -112,13 +118,50 @@ System.out.println(list);
 - flatMap()
 
 ```java
-
+List<String> list = Arrays.asList("a,b,c", "1,2,3");
+list.stream()
+  .map(s -> s.replaceAll(",", ""))
+  .forEach(s -> System.out.print(s+ " "));
+System.out.println();
+list.stream()
+  .flatMap(s -> Arrays.stream(s.split(","))) // 将每个元素转化成一个流
+  .forEach(s -> System.out.print(s+ " "));
+/* 
+abc 123 
+a b c 1 2 3 
+*/
 ```
 
-- peek()
+- peek() 
 
 ```java
+// JDK 内置示例
+Stream.of("one", "two", "three", "four")
+   			.filter(e -> e.length() > 3)
+		    .peek(e -> System.out.println("Filtered value: " + e))
+ 		    .map(String::toUpperCase)
+		    .peek(e -> System.out.println("Mapped value: " + e))
+ 		    .collect(Collectors.toList());
+/* 输出结果
+Filtered value: three
+Mapped value: THREE
+Filtered value: four
+Mapped value: FOUR
+*/
 
+// 反例
+Stream.of("one", "two", "three", "four")
+   			.filter(e -> e.length() > 3)
+		    .peek(e -> System.out.println("Filtered value: " + e))
+ 		    .peek(String::toUpperCase)
+		    .peek(e -> System.out.println("Mapped value: " + e))
+ 		    .collect(Collectors.toList());
+/*
+Filtered value: three
+Mapped value: three
+Filtered value: four
+Mapped value: four
+*/
 ```
 
 - distinct()、sorted()、limit()、skip()
@@ -135,4 +178,182 @@ System.out.println(list);
           .collect(Collectors.toList());
  System.out.println(list); // [limit, java8]
 ```
+
+
+
+## 流的终止操作
+
+| 操作                    | 作用                                                         |
+| ----------------------- | ------------------------------------------------------------ |
+| forEach()               | 循环操作Stream中数据                                         |
+| toArray()               | 返回流中元素对应的数组对象                                   |
+| reduce()                | 聚合操作，用来做统计，将流中元素反复结合起来统计计算，得到一个值 |
+| collect()               | 聚合操作，封装目标数据，将流转换为其他形式接收，如： List、Set、Map、Array |
+| min()、max()、count()   | 聚合操作，最小值，最大值，总数量                             |
+| anyMatch()              | 短路操作，有一个符合条件返回true                             |
+| allMatch()、noneMatch() | 所有数据都符合条件返回true；所有数据都不符合条件返回true     |
+| findFirst()、findAny()  | 短路操作，获取第一个元素；短路操作，获取任一元素             |
+| forEachOrdered()        | 按元素顺序执行循环操作(与foreach 的区别主要在并行处理上，)   |
+
+- toArray()
+
+```java
+List<String> list = Arrays.asList("a,b,c", "1,2,3");
+String[] array = list.stream()
+        .map(s -> s.replaceAll(",", ""))
+        .toArray(String[]::new);
+System.out.println(Arrays.toString(array));
+// [abc, 123]
+```
+
+- min()、max()、count()
+
+```java
+List<Integer> nums = Arrays.asList(1,2,3,4,5,6,7);
+long count1 = nums.stream().count();
+long count2 = nums.stream().collect(Collectors.counting());
+Integer max = nums.stream().max(Integer::compareTo).get();
+Integer min = nums.stream().min(Integer::compareTo).get();
+System.out.println(count1 + " " + count2 + " " + max+ " " + min);
+// 7 7 7 1
+```
+
+- anyMatch()、allMatch()、noneMatch()
+
+```java
+List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
+
+boolean allMatch = list.stream().allMatch(i -> i > 6);
+boolean noneMatch = list.stream().noneMatch(i -> i > 10);
+boolean anyMatch = list.stream().anyMatch(i -> i > 4);
+System.out.println(allMatch + " " + noneMatch +  " " + anyMatch);
+// false true true
+```
+
+- findFirst()、findAny()
+
+```java
+List<String> strings = Arrays.asList("java8","Stream","API","operation","java8","API","limit");
+Optional<String> first1 = strings.stream()
+        .filter("java8"::equals)
+        .findFirst();
+System.out.println(first1.orElse(null));
+
+Optional<String> first2 = strings.stream()
+        .filter("java8_2"::equals)
+        .findFirst();
+System.out.println(first2.orElse(null));
+
+Optional<String> any = strings.stream()
+        .filter("API"::equals)
+        .findAny();
+System.out.println(any.orElse(null));
+/*
+java8
+null
+API */
+```
+
+- forEach()、forEachOrdered()
+
+```java
+Stream.of("AAA","BBB","CCC").parallel().forEach(s->System.out.println("forEach:"+s));
+Stream.of("AAA","BBB","CCC").parallel().forEachOrdered(s->System.out.println("forEachOrdered:"+s));
+/**
+* forEach() 输出不稳定，forEachOrdered()输出稳定，以为所有元素按顺序执行操作
+  forEach:AAA
+  forEach:CCC
+  forEach:BBB
+  forEachOrdered:AAA
+  forEachOrdered:BBB
+  forEachOrdered:CCC
+*/
+/*
+forEach:AAA
+forEach:BBB
+forEach:CCC
+forEachOrdered:AAA
+forEachOrdered:BBB
+forEachOrdered:CCC
+*/
+```
+
+
+
+## 规约操作
+
+{% note success  %}
+
+ Optional<T> reduce(BinaryOperator<T> accumulator)：第一次执行时，accumulator函数的第一个参数为流中的第一个元素，第二个参数为流中元素的第二个元素；第二次执行时，第一个参数为第一次函数执行的结果，第二个参数为流中的第三个元素；依次类推。
+
+{% endnote %}
+
+{% note success  %}
+
+T reduce(T identity, BinaryOperator<T> accumulator)：流程跟上面一样，只是第一次执行时，accumulator函数的第一个参数为identity，而第二个参数为流中的第一个元素。
+
+{% endnote %}
+
+{% note success  %}
+
+<U> U reduce(U identity,BiFunction<U, ? super T, U> accumulator,BinaryOperator<U> combiner)：在串行流(stream)中，该方法跟第二个方法一样，即第三个参数combiner不会起作用。在并行流(parallelStream)中,我们知道流被fork join出多个线程进行执行，此时每个线程的执行流程就跟第二个方法reduce(identity,accumulator)一样，而第三个参数combiner函数，则是将每个线程的执行结果当成一个新的流，然后使用第一个方法reduce(accumulator)流程进行规约。
+
+{% endnote %}
+
+```java
+T reduce(T identity, BinaryOperator<T> accumulator);
+
+Optional<T> reduce(BinaryOperator<T> accumulator);
+
+<U> U reduce(U identity,
+                 BiFunction<U, ? super T, U> accumulator,
+                 BinaryOperator<U> combiner);
+```
+
+```java
+IntStream.range(1, 5).forEach(i -> System.out.print(i + " "));
+System.out.println();
+int sum = IntStream.range(1, 5)
+  .reduce((x, y) -> x + y)
+  .orElse(0);
+System.out.println(sum);
+
+int sum2 = IntStream.range(1, 5)
+  .reduce(0, (x, y) -> x + 2 * y);
+System.out.println(sum2);
+
+int sum3 = IntStream.range(1, 5)
+  .reduce(0, Integer::sum);
+System.out.println(sum3);
+/*
+1 2 3 4 
+10
+20
+10
+*/
+```
+
+
+
+## 收集操作
+
+
+
+{% note default  %} default {% endnote %}
+
+{% note primary  %} primary {% endnote %}
+
+{% note success  %} success {% endnote %}
+
+{% note info  %} info {% endnote %}
+
+{% note warning  %} warning {% endnote %}
+
+{% note danger  %} danger {% endnote %}
+
+### 参考资料
+
+- [Java 8 stream的详细用法](https://blog.csdn.net/y_k_y/article/details/84633001)
+
+- [欧阳思海](https://blog.ouyangsihai.cn/) . [Java8 的 Stream 流式操作之王者归来](http://blog.ouyangsihai.cn/java8-de-stream-liu-shi-cao-zuo-zhi-wang-zhe-gui-lai.html)
 
