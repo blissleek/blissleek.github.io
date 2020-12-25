@@ -339,9 +339,14 @@ System.out.println(sum3);
 
 
 
+
+
 ### 参考资料
+
+- [java.util.stream (Java Platform SE 8 )](https://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html)
 
 - [Java 8 stream的详细用法](https://blog.csdn.net/y_k_y/article/details/84633001)
 
 - [欧阳思海](https://blog.ouyangsihai.cn/) . [Java8 的 Stream 流式操作之王者归来](http://blog.ouyangsihai.cn/java8-de-stream-liu-shi-cao-zuo-zhi-wang-zhe-gui-lai.html)
+
 
