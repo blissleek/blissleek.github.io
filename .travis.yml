@@ -14,7 +14,7 @@ script:
 after_script:
   - cd ./public
   - echo "# blissleek.github.io" >> README.md  
-  - echo "weblog.blissleek.xyz" >> CNAME
+  - echo "wblogger.blissleek.com" >> CNAME
   - git init
   - git config user.name "blissleek"
   - git config user.email "blissleek@163.com"
