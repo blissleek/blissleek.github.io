@@ -61,45 +61,6 @@
       </tags>
   </entry>
   <entry>
-    <title>hexo</title>
-    <url>/2020/12/09/hexo/</url>
-    <content><![CDATA[<p>Next 美化的相关操作</p>
-<a id="more"></a>
-
-
-
-<div class="note default">
-            <p>default </p>
-          </div>
-
-<div class="note primary">
-            <p>primary </p>
-          </div>
-
-<div class="note success">
-            <p>success </p>
-          </div>
-
-<div class="note info">
-            <p>info </p>
-          </div>
-
-<div class="note warning">
-            <p>warning </p>
-          </div>
-
-<div class="note danger">
-            <p>danger </p>
-          </div>]]></content>
-      <categories>
-        <category>next</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>next</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java 8 流式操作API Stream</title>
     <url>/2020/12/06/java-Stream/</url>
     <content><![CDATA[<p><code>Classes to support functional-style operations on streams of elements</code> 这是 oracle 官方对 <code>Package java.util.stream</code>包的解释，可以了解 Stream 包是对元素流的函数式操作进行支持。Stream API 是 Java8 中处理集合的关键抽象概念，可以让我们以一种类 SQL 语句从数据库查询数据的方式对集合进行操作，极大的简化了 Java 对集合处理数据的方式。</p>
@@ -314,6 +275,45 @@
       </categories>
       <tags>
         <tag>Stream</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo</title>
+    <url>/2020/12/09/hexo/</url>
+    <content><![CDATA[<p>Next 美化的相关操作</p>
+<a id="more"></a>
+
+
+
+<div class="note default">
+            <p>default </p>
+          </div>
+
+<div class="note primary">
+            <p>primary </p>
+          </div>
+
+<div class="note success">
+            <p>success </p>
+          </div>
+
+<div class="note info">
+            <p>info </p>
+          </div>
+
+<div class="note warning">
+            <p>warning </p>
+          </div>
+
+<div class="note danger">
+            <p>danger </p>
+          </div>]]></content>
+      <categories>
+        <category>next</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>next</tag>
       </tags>
   </entry>
 </search>
