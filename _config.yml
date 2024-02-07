@@ -105,7 +105,7 @@ theme: next
 deploy:
   type: git
   repo:
-    github: https://github.com/blissleek/blissleek.github.io.git,gh-pages
+    github: git@github.com:blissleek/blissleek.github.io.git,gh-pages
 
 search:
   path: search.xml
