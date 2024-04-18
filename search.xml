@@ -1,6 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>hexo</title>
+    <url>/2020/12/09/hexo/</url>
+    <content><![CDATA[<p>Next 美化的相关操作</p>
+<a id="more"></a>
+
+
+
+<div class="note default">
+            <p>default </p>
+          </div>
+
+<div class="note primary">
+            <p>primary </p>
+          </div>
+
+<div class="note success">
+            <p>success </p>
+          </div>
+
+<div class="note info">
+            <p>info </p>
+          </div>
+
+<div class="note warning">
+            <p>warning </p>
+          </div>
+
+<div class="note danger">
+            <p>danger </p>
+          </div>]]></content>
+      <categories>
+        <category>next</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>next</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>github clone很慢或失败解决方案</title>
     <url>/2020/08/01/github-clone-failed/</url>
     <content><![CDATA[<p>最近在 GitHub clone 项目很慢或者会卡在某个地方以至于 clone 失败，或者clone 失败后会报如下错误：</p>
@@ -39,45 +78,6 @@
       </categories>
       <tags>
         <tag>GitHub</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo</title>
-    <url>/2020/12/09/hexo/</url>
-    <content><![CDATA[<p>Next 美化的相关操作</p>
-<a id="more"></a>
-
-
-
-<div class="note default">
-            <p>default </p>
-          </div>
-
-<div class="note primary">
-            <p>primary </p>
-          </div>
-
-<div class="note success">
-            <p>success </p>
-          </div>
-
-<div class="note info">
-            <p>info </p>
-          </div>
-
-<div class="note warning">
-            <p>warning </p>
-          </div>
-
-<div class="note danger">
-            <p>danger </p>
-          </div>]]></content>
-      <categories>
-        <category>next</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>next</tag>
       </tags>
   </entry>
   <entry>
